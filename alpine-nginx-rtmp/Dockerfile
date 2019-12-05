@@ -57,7 +57,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && apk add --no-cache --update ca-certificates openssl pcre
 
 COPY --from=build /usr/local/nginx /usr/local/nginx
-COPY nginx.conf /usr/local/nginx/conf/nginx.conf
+COPY ./nginx.conf /usr/local/nginx/conf/nginx.conf
 
 EXPOSE 1935
 
