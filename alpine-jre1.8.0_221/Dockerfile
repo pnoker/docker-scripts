@@ -14,7 +14,7 @@
 #   limitations under the License.
 #
 
-FROM alpine:3.8
+FROM alpine:3.10
 MAINTAINER pnoker <pnokers.icloud.com>
 
 ENV JAVA_HOME /usr/local/java
