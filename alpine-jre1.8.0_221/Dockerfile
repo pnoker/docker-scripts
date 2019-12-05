@@ -14,21 +14,19 @@
 #   limitations under the License.
 #
 
-FROM alpine:3.10
+FROM alpine:3.8
 MAINTAINER pnoker <pnokers.icloud.com>
-
-# 设置为国内下载源
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add --no-cache --update --update-cache ca-certificates
 
 ENV JAVA_HOME /usr/local/java
 ENV PATH ${PATH}:${JAVA_HOME}/bin
-    
+
 ADD ./jre1.8.0_221 ${JAVA_HOME}
 ADD ./sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
 COPY ./glibc-2.29-r0.apk /opt/glibc-2.29-r0.apk
 
-RUN cd /opt && apk add glibc-2.29-r0.apk && rm glibc-2.29-r0.apk
-
-CMD java -version
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk add --no-cache --update --update-cache ca-certificates \
+    && cd /opt \
+    && apk add glibc-2.29-r0.apk \
+    && rm glibc-2.29-r0.apk

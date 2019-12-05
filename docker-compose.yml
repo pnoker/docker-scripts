@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  java:
+    build:
+      context: ./alpine-jre1.8.0_221/
+      dockerfile: ./Dockerfile
+    image: pnoker/alpine-java:1.8.221
+    container_name: alpine-java
+
+  nginx:
+    build:
+      context: ./alpine-nginx-rtmp/
+      dockerfile: ./Dockerfile
+    image: pnoker/alpine-nginx:rtmp
+    container_name: alpine-nginx
