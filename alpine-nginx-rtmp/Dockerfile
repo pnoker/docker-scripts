@@ -19,19 +19,20 @@ FROM alpine:3.8 AS build
 ENV NGINX_VERSION nginx-1.17.6
 ENV NGINX_RTMP_MODULE_VERSION 1.2.1
 
+COPY ./nginx-1.17.6.tar.gz /tmp/build/nginx/${NGINX_VERSION}.tar.gz
+COPY ./nginx-rtmp-module-1.2.1.tar.gz /tmp/build/nginx-rtmp-module/nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION}.tar.gz
+
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add --no-cache --update --update-cache bash libgomp zlib-dev openssl-dev libc-dev pcre-dev gcc make expat
+    && apk add --no-cache --update --update-cache ca-certificates libgomp zlib-dev openssl-dev libc-dev pcre-dev gcc make expat
     
 # 下载 Nginx
 RUN mkdir -p /tmp/build/nginx \
     && cd /tmp/build/nginx \
-    && wget -O ${NGINX_VERSION}.tar.gz https://nginx.org/download/${NGINX_VERSION}.tar.gz \
     && tar -zxf ${NGINX_VERSION}.tar.gz
 
 # 下载 Nginx Rtmp Module
 RUN mkdir -p /tmp/build/nginx-rtmp-module \
     && cd /tmp/build/nginx-rtmp-module \
-    && wget -O nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION}.tar.gz https://github.com/arut/nginx-rtmp-module/archive/v${NGINX_RTMP_MODULE_VERSION}.tar.gz \
     && tar -zxf nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION}.tar.gz \
     && cd nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION}
 
@@ -48,7 +49,7 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} \
     && mkdir /var/lock/nginx \
     && rm -rf /tmp/build
 
-FROM alpine:3.10 AS release
+FROM alpine:3.8 AS release
 MAINTAINER pnoker <pnokers.icloud.com>
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
