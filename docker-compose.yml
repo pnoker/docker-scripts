@@ -1,11 +1,18 @@
 version: '3'
 
 services:
-  java:
+  java8221:
     build:
       context: ./alpine-jre1.8.0_221/
       dockerfile: ./Dockerfile
     image: pnoker/alpine-java:1.8.221
+    container_name: alpine-java
+  
+  java8251:
+    build:
+      context: ./alpine-jre1.8.0_251/
+      dockerfile: ./Dockerfile
+    image: pnoker/alpine-java:1.8.251
     container_name: alpine-java
 
   nginx:
