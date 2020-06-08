@@ -16,10 +16,10 @@
 
 FROM alpine:3.8 AS build
 
-ENV NGINX_VERSION nginx-1.17.6
+ENV NGINX_VERSION nginx-1.18.0
 ENV NGINX_RTMP_MODULE_VERSION 1.2.1
 
-COPY ./nginx-1.17.6.tar.gz /tmp/build/nginx/${NGINX_VERSION}.tar.gz
+COPY ./nginx-1.18.0.tar.gz /tmp/build/nginx/${NGINX_VERSION}.tar.gz
 COPY ./nginx-rtmp-module-1.2.1.tar.gz /tmp/build/nginx-rtmp-module/nginx-rtmp-module-${NGINX_RTMP_MODULE_VERSION}.tar.gz
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
