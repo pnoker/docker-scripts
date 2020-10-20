@@ -49,7 +49,7 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} \
     && mkdir /var/lock/nginx \
     && rm -rf /tmp/build
 
-FROM alpine:3.12 AS release
+FROM alpine:3.8 AS release
 MAINTAINER pnoker <pnokers.icloud.com>
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \

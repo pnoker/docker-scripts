@@ -24,7 +24,7 @@ services:
 
   nginx:
     build:
-      context: ./apline-nginx1.18.0/
+      context: ./alpine-nginx1.18.0/
       dockerfile: ./Dockerfile
     image: pnoker/alpine-nginx:1.18.0
     container_name: alpine-nginx
