@@ -15,9 +15,16 @@ services:
     image: pnoker/alpine-java:1.8.251
     container_name: alpine-java
 
-  nginx:
+  rtmp:
     build:
       context: ./alpine-nginx-rtmp/
       dockerfile: ./Dockerfile
     image: pnoker/alpine-nginx:rtmp_1.18.0
+    container_name: alpine-rtmp
+
+  nginx:
+    build:
+      context: ./apline-nginx1.18.0/
+      dockerfile: ./Dockerfile
+    image: pnoker/alpine-nginx:1.18.0
     container_name: alpine-nginx

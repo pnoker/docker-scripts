@@ -49,7 +49,7 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} \
     && mkdir /var/lock/nginx \
     && rm -rf /tmp/build
 
-FROM alpine:3.8 AS release
+FROM alpine:3.12 AS release
 MAINTAINER pnoker <pnokers.icloud.com>
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
@@ -57,9 +57,11 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && mkdir -p /usr/local/nginx \
     && apk add --no-cache --update ca-certificates openssl pcre
 
+COPY plugs/wait-for /bin/
 COPY --from=build /usr/local/nginx /usr/local/nginx
 COPY ./nginx.conf /usr/local/nginx/conf/nginx.conf
 
 EXPOSE 1935
+VOLUME /var/log/nginx
 
 CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]

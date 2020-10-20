@@ -14,7 +14,7 @@
 #   limitations under the License.
 #
 
-FROM alpine:3.10
+FROM alpine:3.12
 MAINTAINER pnoker <pnokers.icloud.com>
 
 ENV JAVA_HOME /usr/local/java
@@ -22,6 +22,7 @@ ENV PATH ${PATH}:${JAVA_HOME}/bin
 
 ADD ./jre1.8.0_251 ${JAVA_HOME}
 ADD ./sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
+COPY plugs/wait-for /bin/
 COPY ./glibc-2.29-r0.apk /opt/glibc-2.29-r0.apk
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
