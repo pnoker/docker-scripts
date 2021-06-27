@@ -17,10 +17,7 @@
 FROM alpine:3.12
 MAINTAINER pnoker <pnokers.icloud.com>
 
-ENV LANG C.UTF-8
-ENV JAVA_HOME=/usr/lib/jvm/default-jvm/jre
-
-ARG version=8.292.10.1
+ARG version=11.0.11.9.1
 
 COPY aspectjweaver.jar /usr/local/java/lib/aspectjweaver.jar
 
@@ -35,4 +32,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && SHA_SUM="6cfdf08be09f32ca298e2d5bd4a359ee2b275765c09b56d514624bf831eafb91" \
     && echo "${SHA_SUM}  /etc/apk/keys/amazoncorretto.rsa.pub" | sha256sum -c - \
     && echo "https://apk.corretto.aws" >> /etc/apk/repositories \
-    && \apk add --no-cache amazon-corretto-8-jre=$version-r0
+    && apk add --no-cache amazon-corretto-11=$version-r0
+
+ENV LANG C.UTF-8
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
+ENV PATH=$PATH:/usr/lib/jvm/default-jvm/bin

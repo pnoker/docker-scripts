@@ -22,11 +22,18 @@ services:
     image: pnoker/alpine-java:dragonwell-8.6.6
     container_name: alpine-java
 
-  corretto:
+  corretto8:
     build:
       context: ./alpine-jre-corretto_8u292/
       dockerfile: ./Dockerfile
     image: pnoker/alpine-java:1.8.292
+    container_name: alpine-java
+
+  corretto11:
+    build:
+      context: ./alpine-jre-corretto_11/
+      dockerfile: ./Dockerfile
+    image: pnoker/alpine-java:1.11.1191
     container_name: alpine-java
 
   rtmp:
