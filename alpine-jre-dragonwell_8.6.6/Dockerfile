@@ -37,5 +37,3 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && mv /tmp/libz/usr/lib/libz.so* /usr/glibc-compat/lib \
     && rm -rf /tmp/libz \
     && rm zlib-1_1.2.11-3-x86_64.pkg.tar.xz
-
-CMD ping www.baidu.com
