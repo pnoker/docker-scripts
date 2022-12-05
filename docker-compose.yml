@@ -29,6 +29,13 @@ services:
     image: pnoker/alpine-java:dragonwell-8.13.14
     container_name: alpine-java
 
+  dragonwelljdk81314:
+    build:
+      context: ./alpine-jdk-dragonwell_8.13.14/
+      dockerfile: ./Dockerfile
+    image: pnoker/alpine-java:dragonwell-jdk-8.13.14
+    container_name: alpine-java
+
   corretto8:
     build:
       context: ./alpine-jre-corretto_8u292/
