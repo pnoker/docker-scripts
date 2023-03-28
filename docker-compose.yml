@@ -63,3 +63,10 @@ services:
       dockerfile: ./Dockerfile
     image: pnoker/alpine-nginx:1.18.0
     container_name: alpine-nginx
+
+  nginx1.22.1:
+    build:
+      context: ./alpine-nginx1.22.1/
+      dockerfile: ./Dockerfile
+    image: pnoker/alpine-nginx:1.22.1
+    container_name: alpine-nginx
