@@ -18,9 +18,11 @@ FROM alpine:3.12
 MAINTAINER pnoker <pnokers.icloud.com>
 
 ENV JAVA_HOME /usr/local/java
-ENV PATH ${PATH}:${JAVA_HOME}/bin
+ENV MAVEN_HOME /usr/local/maven
+ENV PATH ${PATH}:${JAVA_HOME}/bin:${MAVEN_HOME}/bin
 
 ADD ./dragonwell-8.13.14 ${JAVA_HOME}
+ADD ./apache-maven-3.8.6 ${MAVEN_HOME}
 ADD ./sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
 COPY plugs/wait-for /bin/
 COPY ./glibc-2.29-r0.apk /opt/glibc-2.29-r0.apk

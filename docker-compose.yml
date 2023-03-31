@@ -15,6 +15,13 @@ services:
     image: pnoker/alpine-java:1.8.251
     container_name: alpine-java
 
+  dragonwellmain:
+    build:
+      context: ./dragonwell_8.14.15
+      dockerfile: ./Dockerfile
+    image: pnoker/java-jdk:8.14.15
+    container_name: alpine-java
+
   dragonwell:
     build:
       context: ./alpine-jre-dragonwell_8.6.6/
